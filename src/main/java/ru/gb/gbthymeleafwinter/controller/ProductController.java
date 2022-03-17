@@ -20,6 +20,18 @@ public class ProductController {
         return "product-list";
     }
 
+    @GetMapping("/{productId}")
+    public String info(Model model, @PathVariable(name = "productId") Long id) {
+        Product product;
+        if (id != null) {
+            product = productService.findById(id);
+        } else {
+            return "redirect:/product/all";
+        }
+        model.addAttribute("product", product);
+        return "product-info.html";
+    }
+
     @GetMapping
     public String showForm(Model model, @RequestParam(name = "id", required = false) Long id) {
         Product product;
@@ -35,6 +47,7 @@ public class ProductController {
 
     @PostMapping
     public String saveProduct(Product product) {
+        product.setManufacturerId(1L);
         productService.save(product);
         return "redirect:/product/all";
     }

@@ -24,6 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests(
                 (requests) -> {
                     requests.mvcMatchers(HttpMethod.GET, "/product/{productId}").permitAll();
+                    requests.mvcMatchers(HttpMethod.GET, "/cart/unauthorized").permitAll();
                     requests.antMatchers("/product/all").permitAll();
                     requests.antMatchers(HttpMethod.POST, "/product").hasRole("ADMIN");
                 }

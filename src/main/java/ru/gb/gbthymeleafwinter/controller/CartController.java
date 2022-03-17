@@ -33,4 +33,9 @@ public class CartController {
         return "redirect:/product/all";
     }
 
+    @GetMapping("/unauthorized")
+    public String redirectToLoginPage() {
+        return "cart-unauthorized";
+    }
+
 }

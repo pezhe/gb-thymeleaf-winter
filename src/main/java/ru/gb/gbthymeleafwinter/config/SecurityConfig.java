@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,6 +18,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -26,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     requests.mvcMatchers(HttpMethod.GET, "/product/{productId}").permitAll();
                     requests.mvcMatchers(HttpMethod.GET, "/cart/unauthorized").permitAll();
                     requests.antMatchers("/product/all").permitAll();
-                    requests.antMatchers(HttpMethod.POST, "/product").hasRole("ADMIN");
+                    //requests.antMatchers(HttpMethod.POST, "/product").hasRole("ADMIN");
                 }
 
         );
@@ -34,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests((requests) -> {
             ((ExpressionUrlAuthorizationConfigurer.AuthorizedUrl)requests.anyRequest()).authenticated();
         });
+        http.exceptionHandling().accessDeniedPage("/errors/access-denied");
         http.formLogin();
         http.httpBasic();
     }

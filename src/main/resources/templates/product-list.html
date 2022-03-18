@@ -27,9 +27,7 @@
                 <th scope="col" sec:authorize="hasAuthority('product.update')">Редактировать</th>
                 <th scope="col" sec:authorize="hasAuthority('product.delete')">Удалить</th>
                 <th scope="col" sec:authorize="hasAuthority('product.read') || isAnonymous()">Просмотр</th>
-                <!--              todo  дз - добавить permission и реализовать-->
-                <!--                <th scope="col" sec:authorize="hasAuthority('cart.add')">Корзина</th>-->
-                <th scope="col" sec:authorize="hasAuthority('product.read') || isAnonymous()">Корзина</th>
+                <th scope="col" sec:authorize="hasAuthority('cart.add') || isAnonymous()">Корзина</th>
             </tr>
             </thead>
             <tbody>
@@ -48,8 +46,7 @@
                 <td sec:authorize="hasAuthority('product.read') || isAnonymous()">
                     <a type="button" th:href="@{'/product/' + ${product.id} }" class="btn btn-warning">Просмотреть</a>
                 </td>
-                <!--                todo  дз - добавить permission и реализовать-->
-                <td sec:authorize="hasAuthority('product.read')">
+                <td sec:authorize="hasAuthority('cart.add')">
                     <a type="button" th:href="@{/cart/add/(id=${product.id})}" class="btn btn-danger">Добавить</a>
                 </td>
                 <td sec:authorize="isAnonymous()">

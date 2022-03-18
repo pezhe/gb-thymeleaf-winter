@@ -10,6 +10,9 @@ values ('product.create'),
        ('product.update'),
        ('product.delete');
 
+insert into authority (permission)
+values ('cart.add');
+
 insert into account_role (name)
 values ('ROLE_ADMIN'),
        ('ROLE_USER');
@@ -20,6 +23,9 @@ values (1, 1),
        (3, 1),
        (4, 1),
        (2, 2);
+
+insert into role_authority (authority_id, role_id)
+values (5, 2);
 
 insert into user_role (user_id, role_id)
 values (1, 2),

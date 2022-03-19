@@ -23,7 +23,7 @@ public class ProductController {
     }
 
     @GetMapping("/{productId}")
-    @PreAuthorize("hasAuthority('product.read')")
+    @PreAuthorize("hasAuthority('product.read') || isAnonymous()")
     public String info(Model model, @PathVariable(name = "productId") Long id) {
         Product product;
         if (id != null) {

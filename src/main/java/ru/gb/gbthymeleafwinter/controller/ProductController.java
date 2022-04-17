@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.gbthymeleafwinter.entity.Product;
+import ru.gb.gbapi.product.dto.ProductDto;
 import ru.gb.gbthymeleafwinter.service.ProductService;
 
 @Controller
@@ -22,20 +22,20 @@ public class ProductController {
 
     @GetMapping
     public String showForm(Model model, @RequestParam(name = "id", required = false) Long id) {
-        Product product;
+        ProductDto productDto;
 
         if (id != null) {
-            product = productService.findById(id);
+            productDto = productService.findById(id);
         } else {
-            product = new Product();
+            productDto = new ProductDto();
         }
-        model.addAttribute("product", product);
+        model.addAttribute("product", productDto);
         return "product-form";
     }
 
     @PostMapping
-    public String saveProduct(Product product) {
-        productService.save(product);
+    public String saveProduct(ProductDto productDto) {
+        productService.save(productDto);
         return "redirect:/product/all";
     }
 

@@ -2,6 +2,7 @@ package ru.gb.gbthymeleafwinter.entity;
 
 import lombok.*;
 import org.springframework.stereotype.Component;
+import ru.gb.gbapi.product.dto.ProductDto;
 import ru.gb.gbthymeleafwinter.service.ProductService;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
 @Component
 public class Cart {
 
-    private final List<Product> products = new ArrayList<>();
+    private final List<ProductDto> products = new ArrayList<>();
     private final ProductService productService;
 
     public void addProduct(Long id) {

@@ -1,20 +1,22 @@
-package ru.gb.gbthymeleafwinter.entity;
+package ru.gb.gbthymeleafwinter.service;
 
-import lombok.*;
-import org.springframework.stereotype.Component;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import ru.gb.gbapi.product.dto.ProductDto;
-import ru.gb.gbthymeleafwinter.service.ProductService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
+@Service
 @RequiredArgsConstructor
-@Component
-public class Cart {
+public class CartService {
 
     private final List<ProductDto> products = new ArrayList<>();
     private final ProductService productService;
+
+    public List<ProductDto> getProducts() {
+        return products;
+    }
 
     public void addProduct(Long id) {
         if (products.stream().anyMatch((p) -> p.getId().equals(id))) return;

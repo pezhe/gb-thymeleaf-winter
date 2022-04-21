@@ -78,7 +78,7 @@
             <artifactId>gb-api</artifactId>
             <scope>system</scope>
             <version>0.0.7</version>
-            <systemPath>${basedir}\..\gb-shop-mart\lib\gb-api-0.0.7-mart-plain.jar</systemPath>
+            <systemPath>${basedir}\..\gb-shop-mart\lib\gb-api-mart-0.0.12-mart-plain.jar</systemPath>
         </dependency>
     </dependencies>
 

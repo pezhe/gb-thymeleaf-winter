@@ -30,4 +30,8 @@ public class CartService {
                 .ifPresent(products::remove);
     }
 
+    public void clear() {
+        products.clear();
+    }
+
 }

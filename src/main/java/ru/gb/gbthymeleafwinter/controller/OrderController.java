@@ -3,6 +3,7 @@ package ru.gb.gbthymeleafwinter.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +18,8 @@ public class OrderController {
     private final OrderService orderService;
 
     @GetMapping
-    public String getOrderList(Model model) {
-        model.addAttribute("orders", orderService.getOrders());
+    public String getOrderList(Model model, @CookieValue(value = "jwt", defaultValue = "") String jwt) {
+        model.addAttribute("orders", orderService.getOrders(jwt));
         return "order-list";
     }
 
@@ -30,8 +31,8 @@ public class OrderController {
     }
 
     @PostMapping("/new")
-    public String processOrderForm(OrderDto orderDto) {
-        orderService.addOrder(orderDto);
+    public String processOrderForm(OrderDto orderDto, @CookieValue(value = "jwt", defaultValue = "") String jwt) {
+        orderService.addOrder(jwt, orderDto);
         return "redirect:/order";
     }
 

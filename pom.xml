@@ -82,11 +82,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>gb-api-mart-0.0.12-mart-plain</groupId>
+            <groupId>gb-api-mart-0.0.14-mart-plain</groupId>
             <artifactId>gb-api</artifactId>
             <scope>system</scope>
-            <version>0.0.12</version>
-            <systemPath>${basedir}\..\gb-shop-mart\lib\gb-api-mart-0.0.12-mart-plain.jar</systemPath>
+            <version>0.0.14</version>
+            <systemPath>${basedir}\..\gb-shop-mart\lib\gb-api-mart-0.0.14-mart-plain.jar</systemPath>
         </dependency>
     </dependencies>
 

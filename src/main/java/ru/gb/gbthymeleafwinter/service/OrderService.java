@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.gb.gbapi.common.enums.OrderStatus;
-import ru.gb.gbapi.order.api.OrderGateway;
 import ru.gb.gbapi.order.dto.OrderDto;
+import ru.gb.gbthymeleafwinter.clients.OrderExternalGateway;
 
 import java.util.HashSet;
 import java.util.List;
@@ -16,16 +16,16 @@ import java.util.List;
 public class OrderService {
 
     private final CartService cart;
-    private final OrderGateway orderGateway;
+    private final OrderExternalGateway orderGateway;
 
-    public List<OrderDto> getOrders() {
-        return orderGateway.getOrderList();
+    public List<OrderDto> getOrders(String jwt) {
+        return orderGateway.getOrderList("Bearer " + jwt);
     }
 
-    public void addOrder(OrderDto order) {
+    public void addOrder(String jwt, OrderDto order) {
         order.setStatus(OrderStatus.CREATED);
         order.setProducts(new HashSet<>(cart.getProducts()));
-        orderGateway.handlePost(order);
+        orderGateway.handlePost("Bearer " + jwt, order);
         cart.clear();
     }
 

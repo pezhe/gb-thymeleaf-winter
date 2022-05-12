@@ -13,7 +13,7 @@ public class OrderListener {
 
     private final MailService mailService;
 
-    @JmsListener(destination = "order-changed")
+//    @JmsListener(destination = "order-changed")
     public void listen(@Payload OrderEvent orderEvent) {
         System.out.println(orderEvent.getOrderDto());
         mailService.sendSimpleMessage("pezhe@list.ru", "Order change information",
